@@ -1,0 +1,30 @@
+name: env
+channels:
+  - bioconda
+  - conda-forge
+  - defaults
+  - r
+dependencies:
+  - r-foreach
+  - r-doparallel
+  - r-data.table
+  - bcftools
+  - bioconda::bedtools
+  - bioconda::samtools
+  - bioconda::subread
+  - bioconda::picard
+  - bwa=0.7.17
+  - biopython
+  - numpy
+  - pandas
+  - scikit-learn
+  - matplotlib
+  - keras-gp
+  - tensorflow-gpu
+  - pybigwig
+  - pysam
+  - scipy
+  - h5py
+  - tqdm
+
+
