@@ -24,7 +24,7 @@ params.outdir          = "results"
 params.trace_dir       = "trace_dir"
 
 // running options
-params.chrom           = 1..29 
+params.chrom           = 29 
 params.window          = 200
 params.seqlen          = 1000 
 
@@ -70,9 +70,8 @@ nextflow.enable.dsl=2
 
 workflow {
 
-    // channel general processing
-    chrom_list_ch = channel.from(params.chrom)
-
+    INDEX_genome(params.genome)
+    BIN_genome(INDEX_genome.out)
 
 
 }
@@ -101,32 +100,27 @@ process INDEX_genome {
 
     script:
     """
-    rasqual_emperical_pvalues.R rasqual_emperical_pvalues.txt $merged_results $permuation_merged_results
+    samtools faidx genome.fa
     """
 }
 
 
-
-
-// template
-
-process RNA_COMPUTE_rasqual_emperical_pvalues {
-    container 'ndatth/rasqual:v0.0.0'
-    publishDir "${params.outdir}/RNA_results_emperical_pvalues", mode: 'copy', overwrite: true
+process BIN_genome {
+    container 'ndatth/deepsea:v0.0.0'
+    publishDir "${params.outdir}/bed_files", mode: 'symlink', overwrite: true
     memory '8 GB'
     cpus 1
 
     input:
-    path merged_results
-    path permuation_merged_results
+    path genome
 
     output:
-    path("rasqual_emperical_pvalues.txt")
+    path("genome_window.bed")
 
 
     script:
     """
-    rasqual_emperical_pvalues.R rasqual_emperical_pvalues.txt $merged_results $permuation_merged_results
+    generate_coordinate_onebed.py --genome genome.fa.fai --out genome_window.bed --window $params.window --chrom $params.chrom
     """
 }
 
