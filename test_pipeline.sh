@@ -14,7 +14,7 @@ module load Nextflow/21.03
 module load singularity/rpm
 
 
-cd /mnt/SCRATCH/ngda
+#cd /mnt/SCRATCH/ngda
 
 # git clone https://github.com/datngu/nf-deepsea.git
 
@@ -28,9 +28,4 @@ export NXF_SINGULARITY_CACHEDIR=/mnt/users/ngda/sofware/singularity
 # nextflow_work_dir=/mnt/ScratchProjects/Aqua-Faang/dat_projects/aqua_qtl/work_dir/${tis}
 
 
-nextflow run main.nf -resume \
-    --genome $genome \
-    --chrom 29 \
-    --window 200 \
-    --seqlen 1000 \
-    --peaks $peaks
+nextflow run main.nf -resume --genome $genome --chrom 29 --window 200 --seqlen 1000 --peaks $peaks
