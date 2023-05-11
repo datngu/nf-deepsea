@@ -88,16 +88,15 @@ workflow {
 
 process INDEX_genome {
     container 'ndatth/deepsea:v0.0.0'
-    publishDir "${params.outdir}/RNA_results_emperical_pvalues", mode: 'copy', overwrite: true
+    publishDir "${params.trace_dir}/genome", mode: 'symlink', overwrite: true
     memory '8 GB'
     cpus 1
 
     input:
-    path merged_results
-    path permuation_merged_results
+    path "genome.fa"
 
     output:
-    path("rasqual_emperical_pvalues.txt")
+    path("genome*")
 
 
     script:

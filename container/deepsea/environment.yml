@@ -19,7 +19,7 @@ dependencies:
   - pandas
   - scikit-learn
   - matplotlib
-  - keras-gp
+  - keras-gpu
   - tensorflow-gpu
   - pybigwig
   - pysam
