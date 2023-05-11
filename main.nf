@@ -137,7 +137,7 @@ process BED_mapping {
 
     input:
     path bed_path
-    path peak
+    path peaks
 
     output:
     path("positive_${peak}")
