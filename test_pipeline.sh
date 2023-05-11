@@ -29,7 +29,7 @@ export NXF_SINGULARITY_CACHEDIR=/mnt/users/ngda/sofware/singularity
 # nextflow_work_dir=/mnt/ScratchProjects/Aqua-Faang/dat_projects/aqua_qtl/work_dir/${tis}
 
 
-nextflow run main.nf -resume -w \
+nextflow run main.nf -resume -w work_dir \
     --genome ${genome} \
     --chrom 29 \
     --window 200 \
