@@ -14,19 +14,18 @@ module load Nextflow/21.03
 module load singularity/rpm
 
 
-# cd /mnt/ScratchProjects/Aqua-Faang/dat_projects/aqua_qtl/pipeline/brain
-# cd nf-rasqual-dev
+cd /mnt/SCRATCH/ngda
 
-# git clone https://github.com/datngu/nf-rasqual.git
+# git clone https://github.com/datngu/nf-deepsea.git
 
 
 genome=/mnt/users/ngda/genomes/atlantic_salmon/Salmo_salar.Ssal_v3.1.dna_sm.toplevel.fa
-peaks=///
+peaks=/mnt/SCRATCH/ngda/data/*.broadPeak
 export NXF_SINGULARITY_CACHEDIR=/mnt/users/ngda/sofware/singularity
 
-nextflow_res_dir=/mnt/ScratchProjects/Aqua-Faang/dat_projects/aqua_qtl/results/${tis}
-nextflow_trace_dir=/mnt/ScratchProjects/Aqua-Faang/dat_projects/aqua_qtl/results/trace_dir_${tis}
-nextflow_work_dir=/mnt/ScratchProjects/Aqua-Faang/dat_projects/aqua_qtl/work_dir/${tis}
+# nextflow_res_dir=/mnt/ScratchProjects/Aqua-Faang/dat_projects/aqua_qtl/results/${tis}
+# nextflow_trace_dir=/mnt/ScratchProjects/Aqua-Faang/dat_projects/aqua_qtl/results/trace_dir_${tis}
+# nextflow_work_dir=/mnt/ScratchProjects/Aqua-Faang/dat_projects/aqua_qtl/work_dir/${tis}
 
 
 nextflow run main.nf -resume -w $nextflow_work_dir \
@@ -34,6 +33,4 @@ nextflow run main.nf -resume -w $nextflow_work_dir \
     --chrom 29 \
     --window 200 \
     --seqlen 1000 \
-    --peaks $peaks \
-    --outdir $nextflow_res_dir \
-    --trace_dir $nextflow_trace_dir
+    --peaks $peaks
