@@ -95,7 +95,7 @@ process INDEX_genome {
     path "genome.fa"
 
     output:
-    path("genome*")
+    path("genome.fa*")
 
 
     script:

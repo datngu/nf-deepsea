@@ -21,6 +21,7 @@ module load singularity/rpm
 
 genome=/mnt/users/ngda/genomes/atlantic_salmon/Salmo_salar.Ssal_v3.1.dna_sm.toplevel.fa
 peaks=/mnt/SCRATCH/ngda/data/*.broadPeak
+
 export NXF_SINGULARITY_CACHEDIR=/mnt/users/ngda/sofware/singularity
 
 # nextflow_res_dir=/mnt/ScratchProjects/Aqua-Faang/dat_projects/aqua_qtl/results/${tis}
@@ -29,8 +30,8 @@ export NXF_SINGULARITY_CACHEDIR=/mnt/users/ngda/sofware/singularity
 
 
 nextflow run main.nf -resume -w \
-    --genome $genome \
+    --genome ${genome} \
     --chrom 29 \
     --window 200 \
     --seqlen 1000 \
-    --peaks $peaks
+    --peaks ${peaks}
