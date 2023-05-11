@@ -74,9 +74,6 @@ workflow {
     BIN_genome(INDEX_genome.out)
 
     ch_peaks = channel.fromPath(params.peaks, checkIfExists: true)
-    ch_peaks.view()
-
-
     BED_mapping(BIN_genome.out, ch_peaks)
 
 }
