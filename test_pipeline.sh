@@ -20,7 +20,7 @@ module load singularity/rpm
 
 
 genome=/mnt/users/ngda/genomes/atlantic_salmon/Salmo_salar.Ssal_v3.1.dna_sm.toplevel.fa
-peaks=/mnt/SCRATCH/ngda/data/*.broadPeak
+peaks=/mnt/SCRATCH/ngda/data/**.broadPeak
 
 export NXF_SINGULARITY_CACHEDIR=/mnt/users/ngda/sofware/singularity
 
