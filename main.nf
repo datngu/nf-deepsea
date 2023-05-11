@@ -73,10 +73,11 @@ workflow {
     INDEX_genome(params.genome)
     BIN_genome(INDEX_genome.out)
 
-    all_peaks = Channel.fromPath(params.peaks)
-    all_peaks.view()
+    ch_peaks = channel.fromPath(params.peaks, checkIfExists: true)
+    ch_peaks.view()
 
-    BED_mapping(BIN_genome.out, all_peaks)
+
+    BED_mapping(BIN_genome.out, ch_peaks)
 
 }
 
