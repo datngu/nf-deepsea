@@ -76,6 +76,8 @@ workflow {
     all_peaks = Channel.fromPath($params.peaks)
     all_peaks.view()
 
+    BED_mapping(BIN_genome.out, all_peaks)
+
 }
 
 
@@ -127,22 +129,23 @@ process BIN_genome {
 }
 
 
-process BIN_genome {
+process BED_mapping {
     container 'ndatth/deepsea:v0.0.0'
     publishDir "${params.outdir}/bed_files", mode: 'symlink', overwrite: true
     memory '8 GB'
     cpus 1
 
     input:
-    path genome
+    path bed_path
+    path peak
 
     output:
-    path("genome_window.bed")
+    path("positive_${peak}")
 
 
     script:
     """
-    generate_coordinate_onebed.py --genome genome.fa.fai --out genome_window.bed --window $params.window --chrom $params.chrom
+    bedtools intersect -a $bed_path -b ${peak} -wo -f 0.50 > positive_${peak}
     """
 }
 
