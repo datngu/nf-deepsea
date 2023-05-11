@@ -73,6 +73,8 @@ workflow {
     INDEX_genome(params.genome)
     BIN_genome(INDEX_genome.out)
 
+    all_peaks = Channel.fromPath($params.peaks)
+    all_peaks.view()
 
 }
 
@@ -87,7 +89,7 @@ workflow {
 
 process INDEX_genome {
     container 'ndatth/deepsea:v0.0.0'
-    publishDir "${params.trace_dir}/genome", mode: 'symlink', overwrite: true
+    publishDir "${params.outdir}/genome", mode: 'symlink', overwrite: true
     memory '8 GB'
     cpus 1
 
@@ -124,5 +126,24 @@ process BIN_genome {
     """
 }
 
+
+process BIN_genome {
+    container 'ndatth/deepsea:v0.0.0'
+    publishDir "${params.outdir}/bed_files", mode: 'symlink', overwrite: true
+    memory '8 GB'
+    cpus 1
+
+    input:
+    path genome
+
+    output:
+    path("genome_window.bed")
+
+
+    script:
+    """
+    generate_coordinate_onebed.py --genome genome.fa.fai --out genome_window.bed --window $params.window --chrom $params.chrom
+    """
+}
 
 
