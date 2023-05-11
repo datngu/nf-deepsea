@@ -15,5 +15,5 @@ RUN conda install mamba -n base -c conda-forge -y
 RUN mamba env create -f /environment.yml
 ENV PATH /opt/conda/envs/env/bin:$PATH
 
-RUN R -e "install.packages('R.utils', repos='http://cran.us.r-project.org')"
-RUN R -e "install.packages('data.table', repos='http://cran.us.r-project.org')"
+#RUN R -e "install.packages('R.utils', repos='http://cran.us.r-project.org')"
+#RUN R -e "install.packages('data.table', repos='http://cran.us.r-project.org')"

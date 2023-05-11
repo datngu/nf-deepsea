@@ -1,14 +1,14 @@
 ## BUILD DOCKER AUTOMATICLY
-docker build -t atac-qtl:v0.0.0 -f Dockerfile .
+docker build -t deepsea:v0.0.0 -f Dockerfile .
 
 # v0.0.0
-docker tag atac-qtl:v0.0.0 ndatth/atac-qtl:v0.0.0
-docker push ndatth/atac-qtl:v0.0.0
+docker tag deepsea:v0.0.0 ndatth/deepsea:v0.0.0
+docker push ndatth/deepsea:v0.0.0
 echo DONE
 
 
 ### test docker
 
-docker run -it --rm -v /sigma4:/sigma4 --name qtl ndatth/atac-qtl:v0.0.0
-docker start atac
-docker attach atac
+docker run -it --rm -v /sigma4:/sigma4 --name deepsea ndatth/deepsea:v0.0.0
+docker start deepsea
+docker attach deepsea
