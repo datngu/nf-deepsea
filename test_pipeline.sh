@@ -28,4 +28,9 @@ export NXF_SINGULARITY_CACHEDIR=/mnt/users/ngda/sofware/singularity
 # nextflow_work_dir=/mnt/ScratchProjects/Aqua-Faang/dat_projects/aqua_qtl/work_dir/${tis}
 
 
-nextflow run main.nf -resume --genome $genome --chrom 29 --window 200 --seqlen 1000 --peaks $peaks
+nextflow run main.nf -resume -w \
+    --genome $genome \
+    --chrom 29 \
+    --window 200 \
+    --seqlen 1000 \
+    --peaks $peaks
