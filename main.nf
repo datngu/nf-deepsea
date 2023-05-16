@@ -75,7 +75,7 @@ workflow {
 
     ch_peaks = channel.fromPath(params.peaks, checkIfExists: true)
     BED_mapping(BIN_genome.out, ch_peaks)
-
+    LABEL_generating(BED_mapping.out.collect())
 }
 
 
@@ -148,3 +148,21 @@ process BED_mapping {
 }
 
 
+process LABEL_generating {
+    container 'ndatth/deepsea:v0.0.0'
+    publishDir "${params.outdir}/bed_files", mode: 'symlink', overwrite: true
+    memory '32 GB'
+    cpus 1
+
+    input:
+    path bed_path
+
+    output:
+    path("*.txt.gz")
+
+
+    script:
+    """
+    generate_seq_labels.py --input positive_* --out '.'
+    """
+}
