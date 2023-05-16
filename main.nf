@@ -150,7 +150,7 @@ process BED_mapping {
 
 process LABEL_generating {
     container 'ndatth/deepsea:v0.0.0'
-    publishDir "${params.outdir}/bed_files", mode: 'symlink', overwrite: true
+    publishDir "${params.outdir}/peak_labels", mode: 'symlink', overwrite: true
     memory '32 GB'
     cpus 1
 
