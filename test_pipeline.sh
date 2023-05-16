@@ -13,6 +13,7 @@ module load git/2.23.0-GCCcore-9.3.0-nodocs
 module load Nextflow/21.03
 module load singularity/rpm
 
+git pull
 
 #cd /mnt/SCRATCH/ngda
 
