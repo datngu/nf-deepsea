@@ -32,6 +32,7 @@ dependencies:
   - statsmodels
   - tabulate
   - samtools
+  - bedtools
   - bwa
   - bowtie2
   - kipoiseq==0.5.2
