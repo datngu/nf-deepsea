@@ -1,30 +1,42 @@
 name: env
 channels:
-  - bioconda
-  - conda-forge
   - defaults
-  - r
+  - conda-forge
+  - bioconda
+  - nvidia
 dependencies:
-  - r-foreach
-  - r-doparallel
-  - r-data.table
-  - bcftools
-  - bioconda::bedtools
-  - bioconda::samtools
-  - bioconda::subread
-  - bioconda::picard
-  - bwa=0.7.17
-  - biopython
-  - numpy
-  - pandas
-  - scikit-learn
+  - gcc_linux-64
+  - libgcc
+  - pip 
+  - astropy
+  - cudatoolkit=11
+  - cudnn==8
+  - cython
+  - h5py
+  - intervaltree
+  - joblib
   - matplotlib
-  - keras-gpu
-  - tensorflow-gpu
+  - natsort
+  - networkx
+  - numpy
+  - packaging
+  - pandas
+  - pillow
+  - pybedtools
   - pybigwig
   - pysam
+  - python=3.8
+  - scikit-learn
   - scipy
-  - h5py
-  - tqdm
-
-
+  - seaborn
+  - statsmodels
+  - tabulate
+  - samtools
+  - bwa
+  - bowtie2
+  - kipoiseq==0.5.2
+  - pip:
+    - cooler
+    - cooltools
+    - tensorflow==2.5.0
+    - dm-sonnet==2.0.0
