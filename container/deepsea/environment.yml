@@ -22,7 +22,6 @@ dependencies:
   - python=3.10
   - numpy==1.23.2
   - pandas==2.0.1
-  - tensorflow-gpu==2.6.1
-  - dm-sonnet==2.0.0
-  - kipoiseq
-  - tensorflow-hub
+  - tensorflow-gpu==2.12.0
+  - cudatoolkit=11.8.0
+  - cudnn==8
