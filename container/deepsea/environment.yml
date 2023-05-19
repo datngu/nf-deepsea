@@ -23,6 +23,4 @@ dependencies:
   - bwa
   - bowtie2
   - pip:
-    - cooler
-    - cooltools
     - tensorflow==2.12.0
