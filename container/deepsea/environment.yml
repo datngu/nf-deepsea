@@ -20,6 +20,6 @@ dependencies:
   - bedtools
   - bwa
   - bowtie2
-  - numpy=1.23.2
+  - numpy==1.23.2
   - pandas==2.0.1
   - tensorflow==2.12.0
