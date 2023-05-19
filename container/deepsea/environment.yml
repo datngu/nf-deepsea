@@ -12,7 +12,6 @@ dependencies:
   - pybedtools
   - pybigwig
   - pysam
-  - python=3.10
   - scikit-learn
   - scipy
   - seaborn
@@ -20,6 +19,7 @@ dependencies:
   - bedtools
   - bwa
   - bowtie2
+  - python=3.10
   - numpy==1.23.2
   - pandas==2.0.1
   - tensorflow==2.12.0
