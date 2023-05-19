@@ -12,3 +12,6 @@ echo DONE
 docker run -it --rm -v /sigma4:/sigma4 --name deepsea ndatth/deepsea:v0.0.0
 docker start deepsea
 docker attach deepsea
+
+
+# singularity build -F ndatth-seq-modeling-v0.0.0.img docker://ndatth/deepsea:v0.0.0
