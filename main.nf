@@ -74,8 +74,11 @@ workflow {
     BIN_genome(INDEX_genome.out)
 
     ch_peaks = channel.fromPath(params.peaks, checkIfExists: true)
+
     BED_mapping(BIN_genome.out, ch_peaks)
     LABEL_generating(BED_mapping.out.collect())
+    LABEL_generating.out.view()
+    TFR_data_generating(LABEL_generating.out, BIN_genome.out, params.genome)
 }
 
 
@@ -166,3 +169,30 @@ process LABEL_generating {
     generate_seq_labels.py --input positive_* --out '.'
     """
 }
+
+
+
+process TFR_data_generating {
+    container 'ndatth/deepsea:v0.0.0'
+    publishDir "${params.outdir}/tfr_data", mode: 'symlink', overwrite: true
+    memory '32 GB'
+    cpu 1
+    label 'with_1gpu'
+    
+
+    input:
+    path lab
+    path bed
+    path genome
+
+    output:
+    path("*.tfr")
+
+
+    script:
+    """
+    generate_tfr.py --label 25.txt.gz --bed $bed --genome $genome --pad_scale 5 --out chr25.tfr
+    """
+}
+
+
