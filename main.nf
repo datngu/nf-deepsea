@@ -191,7 +191,7 @@ process TFR_data_generating {
 
     script:
     """
-    for i in {1..$params.chrom}
+    for i in {1..${params.chrom}}
     do
         generate_tfr.py --label \${i}.txt.gz --bed $bed --genome $genome --pad_scale 5 --out \${i}.tfr
     done
