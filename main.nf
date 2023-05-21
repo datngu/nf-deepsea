@@ -176,7 +176,7 @@ process TFR_data_generating {
     container 'ndatth/deepsea:v0.0.0'
     publishDir "${params.outdir}/tfr_data", mode: 'symlink', overwrite: true
     memory '32 GB'
-    cpus 1
+    cpus 4
     label 'with_1gpu'
     
 
@@ -191,7 +191,11 @@ process TFR_data_generating {
 
     script:
     """
-    generate_tfr.py --label 25.txt.gz --bed $bed --genome $genome --pad_scale 5 --out chr25.tfr
+    for i in {1..$params.chrom}
+    do
+        generate_tfr.py --label \${i}.txt.gz --bed $bed --genome $genome --pad_scale 5 --out \${i}.tfr
+    done
+    
     """
 }
 
