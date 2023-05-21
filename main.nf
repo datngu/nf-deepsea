@@ -176,7 +176,7 @@ process TFR_data_generating {
     container 'ndatth/deepsea:v0.0.0'
     publishDir "${params.outdir}/tfr_data", mode: 'symlink', overwrite: true
     memory '32 GB'
-    cpu 1
+    cpus 1
     label 'with_1gpu'
     
 
