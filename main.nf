@@ -76,8 +76,11 @@ workflow {
     ch_peaks = channel.fromPath(params.peaks, checkIfExists: true)
 
     BED_mapping(BIN_genome.out, ch_peaks)
+    
     LABEL_generating(BED_mapping.out.collect())
-    LABEL_generating.out.view()
+    
+    //LABEL_generating.out.view()
+    
     TFR_data_generating(LABEL_generating.out, BIN_genome.out, params.genome)
 }
 
