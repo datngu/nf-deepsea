@@ -22,10 +22,10 @@ git pull
 
 # removing chr
 
-for fi in /mnt/SCRATCH/ngda/cattle/data/*
-do
-    cat $fi | sed 's/chr//g' > ${fi}.removed_chr.bed
-done
+# for fi in /mnt/SCRATCH/ngda/cattle/data/*
+# do
+#     cat $fi | sed 's/chr//g' > ${fi}.removed_chr.bed
+# done
 
 
 genome='/mnt/users/ngda/genomes/cattle/Bos_taurus.ARS-UCD1.2.dna_sm.toplevel.fa'
