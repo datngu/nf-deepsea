@@ -20,6 +20,14 @@ git pull
 # git clone https://github.com/datngu/nf-deepsea.git
 
 
+# removing chr
+
+for fi in /mnt/SCRATCH/ngda/cattle/data/*
+do
+    cat $fi | sed 's/chr//g' > ${fi}.removed_chr.bed
+done
+
+
 genome='/mnt/users/ngda/genomes/cattle/Bos_taurus.ARS-UCD1.2.dna_sm.toplevel.fa'
 
 export NXF_SINGULARITY_CACHEDIR=/mnt/users/ngda/sofware/singularity
@@ -34,4 +42,4 @@ nextflow run main.nf -resume -w work_dir \
     --chrom 29 \
     --window 200 \
     --seqlen 1000 \
-    --peaks '/mnt/SCRATCH/ngda/cattle/data/*'
+    --peaks '/mnt/SCRATCH/ngda/cattle/data/*.removed_chr.bed'
