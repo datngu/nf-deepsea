@@ -82,6 +82,7 @@ workflow {
     //LABEL_generating.out.view()
     
     TFR_data_generating(LABEL_generating.out, BIN_genome.out, params.genome)
+    DEEPSEA_training(TFR_data_generating.out)
 }
 
 
@@ -203,3 +204,27 @@ process TFR_data_generating {
 }
 
 
+process DEEPSEA_training {
+    container 'ndatth/deepsea:v0.0.0'
+    publishDir "${params.outdir}/train", mode: 'symlink', overwrite: true
+    memory '64 GB'
+    cpus 32
+    label 'with_1gpu'
+    
+
+    input:
+    path tfr
+
+    output:
+    path("deepsea_model.*")
+
+
+    script:
+    """
+    mv 21.tfr 21.val
+    mv 25.tfr 25.test
+    
+    train_deepsea.py --train *.tfr --val *.val --out deepsea_model --batch_size 1024
+    
+    """
+}
