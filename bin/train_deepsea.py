@@ -62,7 +62,7 @@ def decode_record(record):
         record['label'], out_type=tf.int8, little_endian=True, fixed_length=None, name=None
     )
     seq = tf.reshape(seq, [-1,4])
-    #label = tf.cast(label, tf.float16)
+    label = tf.cast(label, tf.float16)
     return (seq, label)
 
 
