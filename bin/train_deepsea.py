@@ -62,7 +62,7 @@ def decode_record(record):
         record['label'], out_type=tf.int8, little_endian=True, fixed_length=None, name=None
     )
     seq = tf.reshape(seq, [-1,4])
-    label = tf.cast(label, tf.float16)
+    #label = tf.cast(label, tf.float16)
     return (seq, label)
 
 
@@ -93,8 +93,8 @@ def build_model():
     model = Model(inputs=[inp], outputs=[out])
     model.compile(
         optimizer="adam",
-        loss="binary_crossentropy",
-        metrics=["acc"])
+        loss= tf.keras.losses.CategoricalCrossentropy() ,
+        metrics=[tf.keras.metrics.CategoricalAccuracy()])
     return model
 
 
