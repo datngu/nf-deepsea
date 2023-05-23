@@ -33,12 +33,12 @@ num_threads = args.threads
 # mv 21.tfr 21.val
 # mv 25.tfr 25.val
 
-# import glob
-# batch_size = 1024
-# num_threads = 32
-# train_files = glob.glob('*.tfr')
-# val_files = glob.glob('*.val')
-# out = "deepsea_model"
+import glob
+batch_size = 1024
+num_threads = 16
+train_files = glob.glob('1.tfr')
+val_files = glob.glob('*val*')
+out = "deepsea_model"
 
 
 out_model = out + '.h5'
@@ -62,7 +62,7 @@ def decode_record(record):
         record['label'], out_type=tf.int8, little_endian=True, fixed_length=None, name=None
     )
     seq = tf.reshape(seq, [-1,4])
-    #label = tf.cast(label, tf.float16)
+    label = tf.cast(label, tf.float16)
     return (seq, label)
 
 
@@ -97,8 +97,6 @@ def build_model():
         metrics=['binary_accuracy', tf.keras.metrics.AUC()]
     )
     return model
-
-
 
 
 
