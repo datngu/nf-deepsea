@@ -25,8 +25,12 @@ params.trace_dir       = "trace_dir"
 
 // running options
 params.chrom           = 29 
+params.val_chrom       = 21
+params.test_chrom      = 25
+
 params.window          = 200
-params.seqlen          = 1000 
+params.seqlen          = 1000
+
 
 
 
@@ -48,6 +52,8 @@ log.info """\
 
 
     chrom               : $params.chrom
+    test_chrom          : $params.test_chrom
+    val_chrom           : $params.val_chrom 
     window              : $params.window
     seqlen              : $params.seqlen
 
@@ -82,6 +88,7 @@ workflow {
     //LABEL_generating.out.view()
     
     TFR_data_generating(LABEL_generating.out, BIN_genome.out, params.genome)
+    
     DEEPSEA_training(TFR_data_generating.out)
 }
 
@@ -197,7 +204,7 @@ process TFR_data_generating {
     """
     for i in {1..${params.chrom}}
     do
-        generate_tfr.py --label \${i}.txt.gz --bed $bed --genome $genome --pad_scale 5 --out \${i}.tfr
+        generate_tfr.py --label \${i}.txt.gz --bed $bed --genome $genome --pad_scale 5 --out \${i}
     done
     
     """
@@ -221,10 +228,13 @@ process DEEPSEA_training {
 
     script:
     """
-    mv 21.tfr 21.val
-    mv 25.tfr 25.test
+    mv ${params.val_chrom}_fw.tfr ${params.val_chrom}_fw.val
+    mv ${params.val_chrom}_rc.tfr ${params.val_chrom}_rc.val
+
+    mv ${params.test_chrom}_fw.tfr ${params.test_chrom}_fw.test
+    mv ${params.test_chrom}_rc.tfr ${params.test_chrom}_rc.test
     
     train_deepsea.py --train *.tfr --val *.val --out deepsea_model --batch_size 1024
-    
+
     """
 }

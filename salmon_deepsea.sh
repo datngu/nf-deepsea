@@ -8,14 +8,11 @@
 #SBATCH --mail-type=ALL
 
 
-# module load BCFtools/1.10.2-GCC-8.3.0
-# module load git/2.23.0-GCCcore-9.3.0-nodocs
+module load git/2.23.0-GCCcore-9.3.0-nodocs
 module load Nextflow/21.03
 module load singularity/rpm
 
-#git pull
-
-#cd /mnt/SCRATCH/ngda
+git pull
 
 # git clone https://github.com/datngu/nf-deepsea.git
 
@@ -32,6 +29,8 @@ export NXF_SINGULARITY_CACHEDIR=/mnt/users/ngda/sofware/singularity
 nextflow run main.nf -resume -w work_dir \
     --genome ${genome} \
     --chrom 29 \
+    --val_chrom 21 \
+    --test_chrom 25 \
     --window 200 \
     --seqlen 1000 \
-    --peaks '/mnt/SCRATCH/ngda/data/*'
+    --peaks '/mnt/SCRATCH/ngda/data/Salmon/*.bed'
