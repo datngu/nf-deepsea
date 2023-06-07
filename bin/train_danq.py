@@ -2,7 +2,8 @@
 
 from keras.models import Model
 from keras.models import load_model as keras_load_model
-from keras.layers import Dense, Dropout, Activation, Flatten, Conv1D, MaxPooling1D, Input, Lambda
+from keras.layers import Dense, Dropout, Activation, Flatten, Conv1D, MaxPooling1D, Input, Lambda, LSTM, GRU, Bidirectional
+from keras.optimizers import RMSprop
 from keras import metrics
 from keras.callbacks import ModelCheckpoint, EarlyStopping
 import tensorflow as tf
