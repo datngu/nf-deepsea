@@ -93,8 +93,8 @@ def build_model():
     model = Model(inputs=[inp], outputs=[out])
     model.compile(
         optimizer = tf.keras.optimizers.Adam(learning_rate = 0.001),
-        loss='binary_crossentropy',
-        metrics=['binary_accuracy', tf.keras.metrics.AUC()]
+        loss = tf.keras.losses.BinaryCrossentropy(),
+        metrics = ['binary_accuracy', tf.keras.metrics.AUC(), tf.keras.metrics.Precision(), tf.keras.metrics.Recall()]
     )
     return model
 

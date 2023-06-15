@@ -90,8 +90,8 @@ def build_model():
     out = Dense(NUM_OUTPUT, activation="sigmoid", name="dense_2")(x)
     model = Model(inputs=[inp], outputs=[out])
     model.compile(
-        optimizer = tf.keras.optimizers.RMSprop(learning_rate = 0.001),
-        loss = tf.keras.losses.BinaryCrossentropy(from_logits = False),
+        optimizer = tf.keras.optimizers.Adam(learning_rate = 0.001),
+        loss = tf.keras.losses.BinaryCrossentropy(),
         metrics = ['binary_accuracy', tf.keras.metrics.AUC(), tf.keras.metrics.Precision(), tf.keras.metrics.Recall()]
     )
     return model
