@@ -92,6 +92,10 @@ workflow {
     DEEPSEA_training(TFR_data_generating.out)
 
     DANQ_training(TFR_data_generating.out)
+
+    DEEPSEA_training_fw(TFR_data_generating.out)
+
+    DANQ_training_fw(TFR_data_generating.out)
 }
 
 
@@ -307,7 +311,7 @@ process DEEPSEA_training_fw {
 
 
 
-process DANQ_training {
+process DANQ_training_fw {
     container 'ndatth/deepsea:v0.0.0'
     publishDir "${params.outdir}/train_fw", mode: 'symlink', overwrite: true
     memory '64 GB'
