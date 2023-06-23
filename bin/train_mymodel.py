@@ -115,7 +115,7 @@ kernel_size2 = 19
 kernel_size3 = 29
 drop_rate = 0.3
 
-def build_model(filters):
+def build_model(filters = 512):
     input = Input(shape=(NUM_INPUT, 4))
     c1 = CNN_Block(filters, kernel_size1, drop_rate = drop_rate, name = "c1")(input)
     c2 = CNN_Block(filters, kernel_size2, drop_rate = drop_rate, name = "c2")(input)
