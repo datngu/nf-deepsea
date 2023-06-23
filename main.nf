@@ -89,13 +89,15 @@ workflow {
     
     TFR_data_generating(LABEL_generating.out, BIN_genome.out, params.genome)
     
-    DEEPSEA_training(TFR_data_generating.out)
+    // DEEPSEA_training(TFR_data_generating.out)
 
-    DANQ_training(TFR_data_generating.out)
+    // DANQ_training(TFR_data_generating.out)
 
     DEEPSEA_training_fw(TFR_data_generating.out)
 
     DANQ_training_fw(TFR_data_generating.out)
+
+    Mymodel_training_fw(TFR_data_generating.out)
 }
 
 
@@ -335,6 +337,36 @@ process DANQ_training_fw {
     mv ${params.test_chrom}_rc.tfr ${params.test_chrom}_rc.test
     
     train_danq.py --train *_fw.tfr --val *_fw.val --out danq_model --batch_size 1024
+
+    """
+}
+
+
+
+process Mymodel_training_fw {
+    container 'ndatth/deepsea:v0.0.0'
+    publishDir "${params.outdir}/train_fw", mode: 'symlink', overwrite: true
+    memory '64 GB'
+    cpus 32
+    label 'with_1gpu'
+    
+
+    input:
+    path tfr
+
+    output:
+    path("danq_model.*")
+
+
+    script:
+    """
+    mv ${params.val_chrom}_fw.tfr ${params.val_chrom}_fw.val
+    mv ${params.val_chrom}_rc.tfr ${params.val_chrom}_rc.val
+
+    mv ${params.test_chrom}_fw.tfr ${params.test_chrom}_fw.test
+    mv ${params.test_chrom}_rc.tfr ${params.test_chrom}_rc.test
+    
+    train_mymodel.py --train *_fw.tfr --val *_fw.val --out mymodel --batch_size 128
 
     """
 }
